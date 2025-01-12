@@ -20,16 +20,16 @@ docker compose -f %COMPOSE_FILE% up -d
 cls
 
 echo ---------------------------------------
-echo         Matéo BENTOGLIO - NoSQL        
+echo         Mateo BENTOGLIO - NoSQL        
 echo ---------------------------------------
 echo.
-echo - Backend  | Express.js : http://localhost:%BACKEND_PORT%
-echo - Frontend | Next.js : http://localhost:%FRONTEND_PORT%
+echo - Backend - Express.js : http://localhost:%BACKEND_PORT%
+echo - Frontend - Next.js : http://localhost:%FRONTEND_PORT%
 echo - MongoDB : localhost:%MONGO_PORT%
 echo - Mongo Express : http://localhost:%MONGO_EXPRESS_PORT%
 echo.
 echo ----------------------------------------
-echo  Appuyez sur une touche pour arrêter...
+echo  Appuyez sur une touche pour arreter...
 echo ----------------------------------------
 pause >nul
 
