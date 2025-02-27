@@ -1,44 +1,45 @@
-import * as React from "react"
- 
-import { Textarea } from "@/components/ui/textarea"
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import {
-  WrapText,
-} from "lucide-react"
+import * as React from "react";
+import { Textarea } from "@/components/ui/textarea";
+import { Card, CardContent } from "@/components/ui/card";
+import HeaderCard from "./card-header";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { WrapText } from "lucide-react";
+import { Field } from "@/app/form-create/page";
+import { loremIpsum } from 'react-lorem-ipsum';
 
-export function CardLongText({
-  className,
-  ...props
-}: React.ComponentPropsWithoutRef<"div">) {
+interface CardLongTextProps extends React.ComponentPropsWithoutRef<"div"> {
+  field: Field;
+  onDelete?: () => void;
+  onChange?: (key: string, value: string) => void;
+}
+
+export function CardLongText({ field, onDelete, onChange, className, ...props }: CardLongTextProps) {
   return (
-    <div className="w-10/12">
+    <div className="w-10/12 relative">
       <Card>
-      <CardHeader className="flex flex-row gap-2 space-y-0 items-center">
-        <WrapText />
-        <CardTitle>Texte Long</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <form>
-          <div className="grid w-full items-center gap-4">
-            <div className="flex flex-col space-y-1.5">
-              <Label htmlFor="name">Question</Label>
-              <Input id="name" />
+        {onDelete && (
+          <HeaderCard title="Texte Long" icon={<WrapText />} onDelete={onDelete} />
+        )}
+        { !onDelete && (
+          <HeaderCard title="Texte Long" icon={<WrapText />} />
+        )}
+
+        <CardContent>
+          <form>
+            <div className="grid w-full items-center gap-4">
+              <div className="flex flex-col space-y-1.5">
+                <Label htmlFor="name">Question</Label>
+                <Input id="name" placeholder="Titre de la question" onChange={(e) => onChange?.("title", e.target.value)} />
+              </div>
+              <div className="flex flex-col space-y-1.5">
+                <Label htmlFor="framework">Réponse</Label>
+                <Textarea value={loremIpsum({ p: 1, avgSentencesPerParagraph: 5, random: true })} disabled />
+              </div>
             </div>
-            <div className="flex flex-col space-y-1.5">
-              <Label htmlFor="framework">Réponse</Label>
-              <Textarea disabled />
-            </div>
-          </div>
-        </form>
-      </CardContent>
-    </Card>
+          </form>
+        </CardContent>
+      </Card>
     </div>
   );
 }

@@ -23,6 +23,8 @@ export function CardShortText({
   className,
   ...props
 }: CardShortTextProps) {
+  console.log(field);
+
   return (
     <div className="w-10/12">
       <Card>
@@ -37,7 +39,7 @@ export function CardShortText({
             <div className="grid w-full items-center gap-4">
               <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="name">Question</Label>
-                <Input id="name" placeholder="Titre de la question" onChange={(e) => onChange?.("title", e.target.value)} />
+                <Input id="name" placeholder="Titre de la question" onChange={(e) => onChange?.("title", e.target.value)} value={field.title} />
               </div>
               <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="framework">Réponse</Label>

@@ -6,7 +6,10 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "express": "^4.19.2",
-    "mongoose": "^6.9.0"
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mongoose": "^6.9.0",
+    "punycode": "^2.3.1"
   }
 }
