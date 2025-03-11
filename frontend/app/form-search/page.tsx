@@ -30,7 +30,7 @@ export default function Page() {
   async function fetchForms() {
     setLoading(true);
     try {
-      const response = await fetch(`http://localhost:8080/forms?title=${title}`);
+      const response = await fetch(`http://localhost:3000/forms?title=${title}`);
       const data = await response.json();
       setForms(data);
     } catch (error) {
@@ -54,7 +54,7 @@ export default function Page() {
 
   async function deleteForm(id) {
     try {
-      await fetch(`http://localhost:8080/forms/${id}`, { method: "DELETE" });
+      await fetch(`http://localhost:3000/forms/${id}`, { method: "DELETE" });
       setForms((prevForms) => prevForms.filter((form) => form._id !== id));
     } catch (error) {
       console.error("Erreur lors de la suppression du formulaire", error);

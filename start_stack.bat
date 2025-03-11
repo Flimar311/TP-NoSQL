@@ -2,7 +2,7 @@
 chcp 437 >nul
 Setlocal EnableDelayedExpansion
 
-set COMPOSE_FILE="./docker-compose.yml"
+set COMPOSE_FILE=./docker-compose.yml
 
 set BACKEND_PORT=3000
 set FRONTEND_PORT=8080
@@ -29,7 +29,7 @@ echo - MongoDB : localhost:%MONGO_PORT%
 echo - Mongo Express : http://localhost:%MONGO_EXPRESS_PORT%
 echo.
 echo ----------------------------------------
-echo  Appuyez sur une touche pour arreter...
+echo  Appuyez sur une touche pour arrêter...
 echo ----------------------------------------
 pause >nul
 

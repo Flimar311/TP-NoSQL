@@ -26,6 +26,7 @@ export default function AnswerFormPage() {
 
   const [formData, setFormData] = useState<any>(null);
   const [answers, setAnswers] = useState<{ [key: string]: string }>({});
+  const [username, setUsername] = useState<string>(localStorage.getItem("username") || "Utilisateur");
 
   useEffect(() => {
     if (!formId) {
@@ -37,8 +38,8 @@ export default function AnswerFormPage() {
 
     // Récupération des données du formulaire.
     // ATTENTION : L'endpoint GET doit être adapté pour retourner le formulaire par son ID.
-    http://localhost:8080/forms?formId=67b88067db7f1696b9c81845
-    fetch(`http://localhost:8080/forms?formId=${formId}`)
+    http://localhost:3000/forms?formId=67b88067db7f1696b9c81845
+    fetch(`http://localhost:3000/forms?formId=${formId}`)
     .then((res) => {
       if (!res.ok) {
         throw new Error(`Erreur HTTP: ${res.status}`);
@@ -75,8 +76,12 @@ export default function AnswerFormPage() {
       return;
     }
 
+    console.log("Utilisateur:", username);
+    
+
     // Création du payload des réponses
     const payload = {
+      user: username,
       answers: formData.questions.map((question: any) => ({
         questionId: question.id,
         answer: answers[question.id] || "",
@@ -84,7 +89,7 @@ export default function AnswerFormPage() {
     };
 
     try {
-      const response = await fetch(`http://localhost:8080/forms/${formId}/responses`, {
+      const response = await fetch(`http://localhost:3000/forms/${formId}/responses`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),

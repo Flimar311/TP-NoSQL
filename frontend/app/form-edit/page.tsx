@@ -53,7 +53,7 @@ export default function Page() {
   // Si formId est présent, on charge le formulaire existant
   useEffect(() => {
     if (formId) {
-      fetch(`http://localhost:8080/forms?formId=${formId}`)
+      fetch(`http://localhost:3000/forms?formId=${formId}`)
         .then((res) => res.json())
         .then((data) => {
           if (data && data.length > 0) {
@@ -152,14 +152,14 @@ export default function Page() {
       let response;
       if (formId) {
         // Mode modification : on utilise la méthode PUT
-        response = await fetch(`http://localhost:8080/forms/${formId}`, {
+        response = await fetch(`http://localhost:3000/forms/${formId}`, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload),
         });
       } else {
         // Mode création : on utilise la méthode POST
-        response = await fetch("http://localhost:8080/forms", {
+        response = await fetch("http://localhost:3000/forms", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload),
