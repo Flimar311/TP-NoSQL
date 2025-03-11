@@ -134,16 +134,12 @@ app.delete('/forms/:id', async (req, res) => {
   }
 });
 
-
-// { answers: [ { questionId: "id", answer: "réponse" }, ... ] }
-// POST : Création d'une réponse pour un formulaire donné
 app.post('/forms/:id/responses', async (req, res) => {
   try {
     const formId = req.params.id;
     const form = await Form.findById(formId);
     if (!form) return res.status(404).json({ error: 'Formulaire non trouvé' });
 
-    // On attend que le body contienne answers, name, description et user
     const { answers, name, description, user } = req.body;
     console.log(user);
     
@@ -164,7 +160,6 @@ app.post('/forms/:id/responses', async (req, res) => {
   }
 });
 
-// GET : Récupérer les réponses d'un formulaire spécifique
 app.get('/forms/:id/responses', async (req, res) => {
   try {
     const responses = await Response.find({ formId: req.params.id });
@@ -174,7 +169,6 @@ app.get('/forms/:id/responses', async (req, res) => {
   }
 });
 
-// GET : Récupérer toutes les réponses avec recherche
 app.get('/responses', async (req, res) => {
   try {
     console.log(req.query);
@@ -185,7 +179,6 @@ app.get('/responses', async (req, res) => {
       if (searchField === 'id') {
         filter._id = searchQuery;
       } else if (searchField === 'title') {
-        // On suppose ici que le champ "title" correspond au nom de la réponse
         filter.name = { $regex: searchQuery, $options: 'i' };
       } else if (searchField === 'user') {
         filter.user = { $regex: searchQuery, $options: 'i' };
@@ -200,7 +193,6 @@ app.get('/responses', async (req, res) => {
   }
 });
 
-// DELETE : Suppression d'une réponse
 app.delete('/responses/:id', async (req, res) => {
   try {
     const responseDoc = await Response.findByIdAndDelete(req.params.id);

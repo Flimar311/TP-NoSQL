@@ -31,6 +31,9 @@ echo.
 echo ----------------------------------------
 echo  Appuyez sur une touche pour arrêter...
 echo ----------------------------------------
+
+start http://localhost:8080/home
+
 pause >nul
 
 docker compose -f %COMPOSE_FILE% down
